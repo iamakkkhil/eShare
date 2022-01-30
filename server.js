@@ -12,6 +12,7 @@ app.use(cors(corsOptions));
 
 // Serve static files - Middleware
 app.use(express.static("public"));
+app.use(express.static("build"));
 
 // Use JSON by default in POST - Middleware
 app.use(express.json());
@@ -19,6 +20,11 @@ app.use(express.json());
 // Templates
 app.set("views", path.join(__dirname, "/views"));
 app.set("view engine", "ejs");
+
+// React app
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 // Routes
 app.use("/api/files", require("./routes/files"));
