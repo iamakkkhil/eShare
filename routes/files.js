@@ -27,7 +27,6 @@ const upload = multer({
 
 router.post("/", (req, res) => {
   upload(req, res, async (err) => {
-    console.log(req.body, req.file);
     if (!req.file) {
       return res.status(400).send({ error: "File to be uploaded is missing!" });
     }
