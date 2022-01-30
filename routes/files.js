@@ -42,7 +42,7 @@ router.post("/", (req, res) => {
     });
     const response = await file.save();
     res.json({
-      file: `${process.env.APP_BASE_URL}/api/files/${response.uuid}`,
+      file: `${process.env.APP_BASE_URL}/files/${response.uuid}`,
     });
   });
 });
