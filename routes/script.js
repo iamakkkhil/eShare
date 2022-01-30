@@ -6,26 +6,25 @@ const router = express.Router();
 
 async function fetchData() {
   connectDB();
-  const pastDate = new Date(Date.now() - 1 * 60 * 60 * 1000);
+  const pastDate = new Date(Date.now() - 24 * 60 * 60 * 1000);
   const files = await File.find({ createdAt: { $lt: pastDate } });
   const total_files = files.length;
   var files_deleted = 0;
   var deletion_failed = 0;
   if (files.length) {
-    for (const file in files) {
+    for (const i in files) {
       try {
-        fs.unlinkSync(file.path);
-        await file.remove();
+        fs.unlinkSync(`${__dirname}/../${files[i].path}`);
+        await files[i].remove();
         files_deleted = files_deleted + 1;
-        console.log(`Successfully deleted ${file.filename}`);
+        console.log(`Successfully deleted ${files[i].filename}`);
       } catch (err) {
         deletion_failed = deletion_failed + 1;
-        console.log(`Error while deleting ${file.filename}`);
+        console.log(`Error while deleting ${files[i].filename}`);
       }
     }
     console.log("Job done!");
   }
-  console.log(total_files, files_deleted, deletion_failed);
   return [total_files, files_deleted, deletion_failed];
 }
 
