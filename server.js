@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
 app.use("/api/files", require("./routes/files"));
 app.use("/api/files/download", require("./routes/download-file"));
 app.use("/files", require("./routes/show"));
-app.use("/api/delete", require("./routes/script"));
+app.use("/api/delete", require("./script"));
 
 app.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT}`);

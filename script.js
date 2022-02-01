@@ -1,6 +1,6 @@
-const File = require("../models/file_modal");
+const File = require("./models/file_modal");
 const fs = require("fs");
-const connectDB = require("../config/db");
+const connectDB = require("./config/db");
 const express = require("express");
 const router = express.Router();
 
