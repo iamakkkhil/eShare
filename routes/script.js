@@ -14,7 +14,7 @@ async function fetchData() {
   if (files.length) {
     for (const i in files) {
       try {
-        fs.unlinkSync(`${__dirname}/../${files[i].path}`);
+        fs.unlinkSync(`${files[i].path}`);
         await files[i].remove();
         files_deleted = files_deleted + 1;
         console.log(`Successfully deleted ${files[i].filename}`);
